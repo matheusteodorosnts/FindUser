@@ -1,21 +1,56 @@
 package user
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
+
+var idUsers = make(map[int]string)
+
+func clearTerminal() {
+	time.Sleep(2 * time.Second)
+	fmt.Print("\033[H\033[2J")
+}
+
+func SelectOption() {
+	for i := 0; i < 10000; i++ {
+		var selectOption int
+
+		fmt.Print("1 - Create User \n2 - Search User \n3 - Exit\nSelect Option: ")
+		fmt.Scan(&selectOption)
+
+		if selectOption == 1 {
+			createUser()
+			fmt.Println("Account created!")
+			clearTerminal()
+		} else if selectOption == 2 {
+			GetUser()
+			clearTerminal()
+		} else if selectOption == 3 {
+			break
+		} else {
+			fmt.Println("Option Invalid!")
+		}
+	}
+}
+
+func createUser() {
+	// Variables
+	var nameUser string
+	var idUser int
+
+	fmt.Print("Name of your User: ")
+	_, _ = fmt.Scan(&nameUser)
+
+	// ID for User at list
+	idUser = len(idUsers) + 1
+
+	idUsers[idUser] = nameUser
+}
 
 func GetUser() {
+	// Variables
 	var idUser int
-	idUsers := map[int]string{
-		1:  "Noah",
-		2:  "Lanh",
-		3:  "James",
-		4:  "Carl",
-		5:  "John",
-		6:  "James",
-		7:  "Olivia",
-		8:  "Sophia",
-		9:  "Emma",
-		10: "Jack",
-	}
 
 	fmt.Print("Id User: ")
 	_, _ = fmt.Scan(&idUser)

@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	user.GetUser()
+	user.SelectOption()
 }
